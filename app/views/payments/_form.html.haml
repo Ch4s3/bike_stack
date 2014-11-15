@@ -1,0 +1,15 @@
+= form_tag orders_path, method: 'post' do
+  #dropin
+  %input{:type => "submit", :value => "Pay $10"}
+= @params
+:javascript
+  function setupBT() {
+    braintree.setup("@client_token", 'dropin', {
+      container: 'dropin'
+    });
+  }
+  if (window.addEventListener)
+    window.addEventListener("load", setupBT, false);
+  else if (window.attachEvent)
+    window.attachEvent("onload", setupBT);
+  else window.onload = setupBT;
