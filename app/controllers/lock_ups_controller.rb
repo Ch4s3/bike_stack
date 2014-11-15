@@ -4,17 +4,15 @@ class LockUpsController < ApplicationController
   end
 
   def show
-    @spot = LockUp.find(params[:id])
-
   end
 
   def create
     @spot = LockUp.create(lockup_params)
 
     if @spot.save
-      redirect_to root_path, :notice => "Spot Saved"
+      redirect_to root_path, :notice => "Spot saved."
     else
-      redirect_to :back, :notice => "Spot Not Saved"
+      redirect_to :back, :notice => "Spot Not Saced"
     end
   end
 
