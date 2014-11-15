@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require leaflet
+//= require countdown
 //= require_tree .
