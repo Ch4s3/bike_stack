@@ -22,6 +22,20 @@ class LockUpsController < ApplicationController
     end
   end
 
+  def find
+    if params.present?
+      lat = params["lat"]
+      lon = params["lon"]
+      rad = params["rad"] || 0.1
+
+      @results = LockUp.near([lat, lon], rad)
+    end
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def index
     @spots = LockUp.all
   end

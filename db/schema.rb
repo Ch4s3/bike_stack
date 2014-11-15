@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141115152451) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
     t.string   "capacity"
   end
 
