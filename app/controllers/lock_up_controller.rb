@@ -1,4 +1,5 @@
 class LockUpController < ApplicationController
+  skip_before_filter  :verify_authenticity_token, :except => [:submit]
   def show
   end
 
