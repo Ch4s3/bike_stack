@@ -1,18 +1,21 @@
 html, body {
 height: 100%;
 }
-html {
-background-image: url('../img/sample.jpg');
-background-position: center center;
-background-repeat: no-repeat;
-background-size: cover;
-}
-body {
-background-color: rgba(44,62,80 , 0.6 );
-background-image: url('../img/pattern.png');
+.background {
+position: absolute;
+height: 100%;
+width: 100%;
+/*background-color: rgba(44,62,80 , 0.6 );
+background-image: url('../img/pattern.png');*/
 background-position: center;
 background-repeat: repeat;
 font-family: 'Raleway', 'Arial', sans-serif;
+background-image: url("https://s3.amazonaws.com/uploads.hipchat.com/82370/594691/AfEMwJKZridgSvw/bike.jpg");
+opacity: .4;
+background-position: center center;
+background-repeat: no-repeat;
+
+background-size: cover;
 }
 .countdown-container {
 position: relative;
@@ -28,7 +31,7 @@ position: relative;
 width: 100%;
 }
 .clock-canvas {
-background-color: rgba(255, 255, 255, .1);
+/*background-color: rgba(255, 255, 255, .1);*/
 border-radius: 50%;
 height: 0px;
 padding-bottom: 100%;

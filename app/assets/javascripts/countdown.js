@@ -1,11 +1,14 @@
 $(document).ready(function() {
+//get the current time in unix timestamp seconds
+
+var seconds = new Date().getTime() / 1000;
+
 $('.countdown').final_countdown({
 
-var milliseconds = (new Date).getTime();
-
 start: '1362139200',
-end: '1388461320',
-now: '1387461319',
+end: '1417217400',
+now: seconds,
+
 selectors: {
     value_seconds: '.clock-seconds .val',
     canvas_seconds: 'canvas_seconds',
