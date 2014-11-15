@@ -13,6 +13,7 @@ class LockUpsController < ApplicationController
       redirect_to root_path, :notice => "Spot saved."
     else
       redirect_to :back, :notice => "Spot Not Saced"
+    end
   end
 
   def submit
