@@ -9,11 +9,13 @@
 
   function success(pos) {
     var crd = pos.coords;
-
+    console.log(crd.latitude);
+    console.log(crd.longitude);
     var map = L.map('map').setView([crd.latitude, crd.longitude], 13);
     L.tileLayer("http://api.tiles.mapbox.com/v4/examples.map-zr0njcqy/{z}/{x}/{y}.png?access_token=<%=ENV['MAP_BOX_API']%>", {
       attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
       maxZoom: 18
     }).addTo(map);
   };
+
 </script>
