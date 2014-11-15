@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   def create
     nonce = params[:payment_method_nonce]
     render action: :new and return unless nonce
+    binding.pry
     result = Braintree::Transaction.sale(
       amount: "10.00",
       payment_method_nonce: nonce
