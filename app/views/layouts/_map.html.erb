@@ -1,8 +1,11 @@
-<div id="map"></div>
+<div id="map">
+  <div id="loading-js"><img src="http://fc02.deviantart.net/fs70/f/2013/227/0/a/loading_gif_by_kimhyunailuv-d6i89u6.gif"></div>
+</div>
 
 <script>
    function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
+    $('#loading-js').show();
   };
 
   navigator.geolocation.getCurrentPosition(success, error);
@@ -11,6 +14,7 @@
     var crd = pos.coords;
     console.log(crd.latitude);
     console.log(crd.longitude);
+    $('#loading-js').hide();
     var map = L.map('map').setView([crd.latitude, crd.longitude], 13);
     L.tileLayer("http://api.tiles.mapbox.com/v4/examples.map-zr0njcqy/{z}/{x}/{y}.png?access_token=<%=ENV['MAP_BOX_API']%>", {
       attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
@@ -22,9 +26,8 @@
       var name = '<%= data.name %>'
       var description = '<%= data.description %>'
       var marker = L.marker([lat, lon]).addTo(map);
-      marker.bindPopup( name + "<br />" + description ).openPopup();
+      marker.bindPopup( name + "<br />" + description );
     <% end %>
-
   };
 
 </script>
