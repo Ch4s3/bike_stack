@@ -19,7 +19,10 @@
     <% LockUp.all.each do |data| %>
       var lat = <%= data.lat %>
       var lon = <%= data.lon %>
+      var name = '<%= data.name %>'
+      var description = '<%= data.description %>'
       var marker = L.marker([lat, lon]).addTo(map);
+      marker.bindPopup( name + "<br />" + description ).openPopup();
     <% end %>
 
   };
