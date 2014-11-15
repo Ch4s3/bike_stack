@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :lockups
+  resources :lock_ups
   
-  post 'lock_up/submit'
-
-  get 'lock_up/spots', path: '/spots'
-
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users
   resources :users
+
+  namespace :api do
+    resources :spots
+  end
 end

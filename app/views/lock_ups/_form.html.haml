@@ -1,0 +1,18 @@
+= form_for @lockup do |f|
+  .form-group
+    = f.label :lat
+    = f.text_field :lat
+    = f.label :lon
+    = f.text_field :lon
+  .form-group
+    = f.label :name
+    = f.text_field :name
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-group
+    = f.label :capacity
+    = f.text_field :capacity
+  .div
+    %button.btn.btn-primary.btn-sml{type: "submit"} Add Lock Up Spot
+
