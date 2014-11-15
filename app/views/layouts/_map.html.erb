@@ -16,6 +16,12 @@
       attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
       maxZoom: 18
     }).addTo(map);
+    <% LockUp.all.each do |data| %>
+      var lat = <%= data.lat %>
+      var lon = <%= data.lon %>
+      var marker = L.marker([lat, lon]).addTo(map);
+    <% end %>
+
   };
 
 </script>
