@@ -16,8 +16,20 @@ class Api::SpotsController < ApplicationController
     render json: @spots.to_json
   end
 
+  def find
+    lat = lockup_params[:lat]
+    lon = lockup_params[:lon]
+    rad = lockup_params[:rad] || 0.1
+
+    @results = LockUp.near([lat, lon], rad)
+
+    respond_to do |format|
+      format.json { render json: @results }
+    end
+  end
+
   private
   def lockup_params
-      params.require(:lock_up).permit(:name, :lat, :lon, :description, :capacity)
+    params.require(:lock_up).permit(:name, :lat, :lon, :rad, :description, :capacity)
   end
 end
