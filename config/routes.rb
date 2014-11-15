@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  get 'lock_up/show'
-
-  get 'lock_up/create'
-
+  resources :lockups
+  
   post 'lock_up/submit'
-
-  get 'lock_up/index'
 
   get 'lock_up/spots', path: '/spots'
 
