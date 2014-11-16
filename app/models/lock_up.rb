@@ -1,4 +1,5 @@
 class LockUp < ActiveRecord::Base
+  acts_as_votable
   has_many :users, through: :submissions
   geocoded_by :address, :latitude  => :lat, :longitude => :lon
   reverse_geocoded_by :lat, :lon

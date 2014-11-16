@@ -1,4 +1,5 @@
 class LockUpsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token, only: [:vote]
   def new
     @lockup = LockUp.new
   end
@@ -50,6 +51,26 @@ class LockUpsController < ApplicationController
     end
   end
 
+  def vote
+    lock_up_id = vote_params[:lock_up_id]
+    direction = vote_params[:direction]
+
+    lock_up = LockUp.find(lock_up_id)
+
+    if direction == "up"
+      lock_up.liked_by current_user
+    elsif direction == "down"
+      lock_up.downvote_from current_user
+    end
+
+    tally_votes = lock_up.get_upvotes.size - lock_up.get_downvotes.size
+    lock_up.update_column(:total_votes, tally_votes)
+
+    respond_to do |format|
+      format.json {render json: tally_votes }
+    end
+  end
+
   def index
     @spots = LockUp.all
   end
@@ -57,5 +78,9 @@ class LockUpsController < ApplicationController
   private
   def lockup_params
       params.require(:lock_up).permit(:name, :lat, :lon, :description, :capacity, :photo)
+  end
+
+  def vote_params
+    params.require(:vote).permit(:lock_up_id, :direction)
   end
 end

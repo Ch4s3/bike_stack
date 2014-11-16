@@ -1,0 +1,57 @@
+$(document).ready(function() {
+  
+  function error(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+    $('#loading-js').show();
+  };
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+  function success(pos) {
+    var crd = pos.coords;
+    console.log(crd.latitude);
+    console.log(crd.longitude);
+    $('#loading-js').hide();
+    var map = L.map('map').setView([crd.latitude, crd.longitude], 13);
+    L.tileLayer("http://{s}.tiles.mapbox.com/v3/clickclickonsal.k80nf736/{z}/{x}/{y}.png", {
+      attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
+      maxZoom: 18
+    }).addTo(map);
+    <% LockUp.all.each do |data| %>
+      var lat = <%= data.lat %>
+      var lon = <%= data.lon %>
+      var cid = "<%= data.id %>"
+      var name = "<%= data.name %>"
+      var description = "<%= data.description %>"
+      var totalVotes = <%= data.get_upvotes.size - data.get_downvotes.size %>
+      var marker = L.marker([lat, lon]).addTo(map);
+      marker.bindPopup( name + "<br />" + description + "<button class='upvote vote' data-up-id='"+cid+"'>UpVote</button><p class='total-votes'>"+totalVotes+"</p><button class='downvote vote' data-down-id='"+cid+"'>DownVote</button>" );
+    <% end %>
+
+
+    $(document).on("click", "button", function() {
+      if($(this).hasClass("upvote")){
+        var theID = $(this).attr('data-up-id');
+        ajaxVote(theID, "up");
+      }
+      else if($(this).hasClass("downvote")){
+        var theID = $(this).attr('data-down-id');
+        ajaxVote(theID, "down");
+      }
+    });
+
+
+    function ajaxVote(id, direction) {
+      $.ajax({
+        url: "/lock_ups/vote",
+        dataType: "json",
+        method: "POST",
+        data: { vote: { lock_up_id: id, direction: direction}},
+        success: function(response) {
+          $(".total-votes").html(response);
+        }
+      })
+    }
+  };
+
+});
