@@ -49,6 +49,7 @@ class Api::SpotsController < ApplicationController
 
   private
   def lockup_params
+    p params
     params.require(:lock_up).permit(:name, :lat, :lon, :rad, :description, :capacity, :photo)
   end
 
