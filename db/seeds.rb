@@ -8,10 +8,10 @@
 # Environment variables (ENV['...']) can be set in the file .env file.
 LockUp.destroy_all
 LockUp.create [
-  {lat: 39.281195, lon: -76.6061881, name: "Dump" , description: "Got my Bike Stolen Here", photo_file_name: "https://c2.staticflickr.com/8/7247/7027049245_1cd96fa8fc_z.jpg"},
+  {lat: 39.281195, lon: -76.6061881, name: "Dump" , description: "Got my Bike Stolen Here"},
   {lat: 39.279787, lon: -76.608441, name: "Fed Hill Park" , description: "Center of Federal Hill Park with a good pole to lock up to"},
-  {lat: 39.278737, lon: -76.604069, name: "Awesome" , description: "Awesome bike rack to lockup to" },
-  {lat: 39.277754, lon: -76.607081, name: "Safe" , description: "Federal Motors makes sure to hold your bike but only when there open ;)", photo_file_name: "http://upload.wikimedia.org/wikipedia/commons/0/00/Bicycle-icon.svg" },
+  {lat: 39.278737, lon: -76.604069, name: "Awesome" , description: "Awesome bike rack to lockup to"},
+  {lat: 39.277754, lon: -76.607081, name: "Safe" , description: "Federal Motors makes sure to hold your bike but only when there open ;)"},
   {lat: 39.276926, lon: -76.607874, name: "School Rack" , description: "A nice bike rack to chain to." },
   {lat: 39.274230, lon: -76.603293, name: "Lock and Eat" , description: "This Resturant lets you bring your bike inside and eat! =]"},
   {lat: 39.273500, lon: -76.602751, name: "Bike Shop" , description: "If you your bike here you get free bike keeping" },

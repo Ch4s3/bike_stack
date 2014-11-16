@@ -14,4 +14,9 @@ class LockUp < ActiveRecord::Base
     spot_json['url'] = self.photo.url(:medium) || ''
     return spot_json
   end
+  def to_json_with_photo_url_thumb
+    spot_json = JSON.parse(self.to_json)
+    spot_json['url'] = self.photo.url(:thumb) || ''
+    return spot_json
+  end
 end
