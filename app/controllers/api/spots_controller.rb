@@ -22,10 +22,10 @@ class Api::SpotsController < ApplicationController
     lon = lockup_params[:lon]
     rad = lockup_params[:rad] || 0.1
 
-    @results = LockUp.near([lat, lon], rad)
-
+    results = LockUp.near([lat, lon], rad)
+    @json = results.map{|s| s.to_json_with_photo_url}
     respond_to do |format|
-      format.json { render json: collection_to_json(@results) }
+      format.json { render json: @json }
     end
   end
 
