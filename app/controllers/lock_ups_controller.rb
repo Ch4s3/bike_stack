@@ -4,15 +4,29 @@ class LockUpsController < ApplicationController
   end
 
   def show
+    @lockup = LockUp.find(params[:id])
+  end
+
+  def edit
+    @lockup = LockUp.find(params[:id])
   end
 
   def create
-    @spot = LockUp.create(lockup_params)
+    @lockup = LockUp.create(lockup_params)
 
-    if @spot.save
+    if @lockup.save
       redirect_to root_path, :notice => "Spot saved."
     else
       redirect_to :back, :notice => "Spot Not Saced"
+    end
+  end
+
+  def update
+    @lockup = LockUp.find(params[:id])
+    if @lockup.update_attributes(lockup_params)
+      redirect_to root_path, :notice => "Spot updated."
+    else
+      redirect_to :back, :alert => "Unable to update spot."
     end
   end
 
@@ -42,6 +56,6 @@ class LockUpsController < ApplicationController
 
   private
   def lockup_params
-      params.require(:lock_up).permit(:name, :lat, :lon, :description, :capacity)
+      params.require(:lock_up).permit(:name, :lat, :lon, :description, :capacity, :photo)
   end
 end
