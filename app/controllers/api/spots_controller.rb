@@ -12,8 +12,9 @@ class Api::SpotsController < ApplicationController
   end
 
   def index
-    @spots = LockUp.all
-    render json: @spots.to_json
+    spots = LockUp.all
+    spots_with_urls = spots.map{|s| s.to_json_with_photo_url}
+    render json: spots_with_urls
   end
 
   def find
@@ -22,8 +23,8 @@ class Api::SpotsController < ApplicationController
     rad = params["lock_up"]["rad"].to_f || 0.1
 
     results = LockUp.near([lat, lon], rad)
-    @json = results.map{|s| s.to_json_with_photo_url}
-    render json: @json
+    spots_with_urls = results.map{|s| s.to_json_with_photo_url}
+    render json: spots_with_urls
   end
 
   def vote
