@@ -16,9 +16,9 @@ class LockUpsController < ApplicationController
     @lockup = LockUp.create(lockup_params)
 
     if @lockup.save
-      redirect_to root_path, :notice => "Spot saved."
+      redirect_to root_path, :notice => "Spot Saved."
     else
-      redirect_to :back, :notice => "Spot Not Saced"
+      redirect_to :back, :notice => "Spot Not Saved"
     end
   end
 
