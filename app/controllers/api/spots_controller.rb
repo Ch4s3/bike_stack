@@ -42,10 +42,7 @@ class Api::SpotsController < ApplicationController
     tally_votes = lock_up.get_upvotes.size - lock_up.get_downvotes.size
     lock_up.update_column(:total_votes, tally_votes)
 
-    respond_to do |format|
-      format.json { render json: tally_votes }
-    end
-
+    render json: tally_votes
   end
 
   private
