@@ -29,8 +29,11 @@ $(document).ready(function() {
     else if( totalVotes < 0 ) {
       color = "red";
     }
+    if( photoUrl == '/images/thumb/missing.png') {
+      photoUrl = "http://i.imgur.com/vBAW71x.png";
+    }
     if(gon.user_signed_in) {
-      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png'></button><span id='"+cid+"' class='total-votes "+color+"'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br/><img src='"+photoUrl+"'>" );
+      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png'></button><span id='"+cid+"' class='total-votes "+color+"'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br/><a href='/lock_ups/"+cid+"/edit'><img src='"+photoUrl+"'></a>" );
     } else {
       marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><span id='"+cid+"' class='total-votes "+color+"'>"+totalVotes+"</span></div><br /><img src='"+photoUrl+"'>" );      
     }
@@ -65,7 +68,7 @@ $(document).ready(function() {
         var name = lockup["name"];
         var description = lockup["description"];
         var photoUrl = lockup["url"];
-        marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png></button><span id='"+id+"' class='total-votes'>"+response+"</span><button class='downvote vote' data-down-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br /><img src='"+photoUrl+"'>" );
+        marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png></button><span id='"+id+"' class='total-votes'>"+response+"</span><button class='downvote vote' data-down-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br /><a href='/lock_ups/"+id+"/edit'><img src='"+photoUrl+"'></a>" );
         var valId = $(".total-votes").attr("id");
         if ($("#"+valId).html() > 0 ) {
           $("#"+valId).removeClass("red");
