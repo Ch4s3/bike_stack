@@ -1,20 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :update_sanitized_params, if: :devise_controller?
-
-  def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :avatar)}
-    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:name, :email, :password, :password_confirmation, :current_password, :avatar)}
-  end
-
   def update
     @user = User.find(current_user.id)
     if needs_password?(@user, params)
       successfully_updated = true
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
     else
-      # remove the virtual current_password attribute
-      # update_without_password doesn't know how to ignore it
-      params[:user].delete(:current_password)
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
 
@@ -35,7 +25,6 @@ class RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    user.email != params[:user][:email] ||
-      params[:user][:password].present?
+    params[:user][:password].present?
   end
 end
