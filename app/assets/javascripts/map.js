@@ -22,10 +22,17 @@ $(document).ready(function() {
     var photoUrl = lockup["url"];
     var marker = L.marker([lat, lon]).addTo(map);
     marker._leaflet_id = cid;
+    var color = '';
+    if( totalVotes > 0 ) {
+      color = "green";
+    }
+    else if( totalVotes < 0 ) {
+      color = "red";
+    }
     if(gon.user_signed_in) {
-      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png'></button><span id='"+cid+"' class='total-votes'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br/><img src='"+photoUrl+"'>" );
+      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png'></button><span id='"+cid+"' class='total-votes "+color+"'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div><br/><img src='"+photoUrl+"'>" );
     } else {
-      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><span id='"+cid+"' class='total-votes'>"+totalVotes+"</span></div><br /><img src='"+photoUrl+"'>" );      
+      marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><span id='"+cid+"' class='total-votes "+color+"'>"+totalVotes+"</span></div><br /><img src='"+photoUrl+"'>" );      
     }
     markerArray[cid] = marker;
     gonArray[cid] = lockup;
