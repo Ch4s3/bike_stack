@@ -21,7 +21,7 @@ $(document).ready(function() {
     var totalVotes = lockup["total_votes"];
     var marker = L.marker([lat, lon]).addTo(map);
     marker._leaflet_id = cid;
-    marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><button class='upvote vote' data-up-id='"+cid+"'>UpVote</button><span class='total-votes'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'>DownVote</button>" );
+    marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png'></button><span class='total-votes'>"+totalVotes+"</span><button class='downvote vote' data-down-id='"+cid+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div>" );
     markerArray[cid] = marker;
     gonArray[cid] = lockup;
   });
@@ -51,7 +51,7 @@ $(document).ready(function() {
         var lockup = gonArray[id];
         var name = lockup["name"];
         var description = lockup["description"];
-        marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><button class='upvote vote' data-up-id='"+id+"'>UpVote</button><span class='total-votes'>"+response+"</span><button class='downvote vote' data-down-id='"+id+"'>DownVote</button>" );
+        marker.bindPopup( "<span>"+ name + "</span><br /><span>" + description + "</span><br /><div class='vote-container'><button class='upvote vote' data-up-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/AiBpAa7.png></button><span class='total-votes'>"+response+"</span><button class='downvote vote' data-down-id='"+id+"'><img class='vote-img' src='http://i.imgur.com/oQUIcmh.png'></button></div>" );
       }
     })
   }
