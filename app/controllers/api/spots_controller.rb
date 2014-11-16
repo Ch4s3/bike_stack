@@ -35,9 +35,9 @@ class Api::SpotsController < ApplicationController
 
     lock_up = LockUp.find(lock_up_id)
     if direction == "up"
-      lock_up.liked_by User.first
+      lock_up.liked_by user
     elsif direction == "down"
-      lock_up.downvote_from User.first
+      lock_up.downvote_from user
     end
 
     tally_votes = lock_up.get_upvotes.size - lock_up.get_downvotes.size
