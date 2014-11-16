@@ -1,4 +1,5 @@
 class Api::SpotsController < ApplicationController
+  include LockUpCollection
   skip_before_filter  :verify_authenticity_token
   def new
     @lockup = LockUp.new
@@ -24,12 +25,12 @@ class Api::SpotsController < ApplicationController
     @results = LockUp.near([lat, lon], rad)
 
     respond_to do |format|
-      format.json { render json: @results }
+      format.json { render json: collection_to_json(@results) }
     end
   end
 
   private
   def lockup_params
-    params.require(:lock_up).permit(:name, :lat, :lon, :rad, :description, :capacity)
+    params.require(:lock_up).permit(:name, :lat, :lon, :rad, :description, :capacity, :photo)
   end
 end
