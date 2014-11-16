@@ -1,5 +1,4 @@
 class Api::SpotsController < ApplicationController
-  include LockUpCollection
   skip_before_filter  :verify_authenticity_token
   def new
     @lockup = LockUp.new
