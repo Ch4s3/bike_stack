@@ -23,9 +23,7 @@ class Api::SpotsController < ApplicationController
 
     results = LockUp.near([lat, lon], rad)
     @json = results.map{|s| s.to_json_with_photo_url}
-    respond_to do |format|
-      format.json { render json: @json }
-    end
+    render json: @json
   end
 
   def vote
