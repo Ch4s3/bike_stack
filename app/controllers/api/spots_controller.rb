@@ -17,15 +17,13 @@ class Api::SpotsController < ApplicationController
   end
 
   def find
-    lat = lockup_params[:lat]
-    lon = lockup_params[:lon]
-    rad = lockup_params[:rad] || 0.1
+    lat = params["lock_up"]["lat"].to_f
+    lon = params["lock_up"]["lon"].to_f
+    rad = params["lock_up"]["rad"].to_f || 0.1
 
     results = LockUp.near([lat, lon], rad)
     @json = results.map{|s| s.to_json_with_photo_url}
-    respond_to do |format|
-      format.json { render json: @json }
-    end
+    render json: @json
   end
 
   def vote
