@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.3'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'leaflet-rails'
-gem "geocoder"
 gem 'rails', '4.1.6'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'

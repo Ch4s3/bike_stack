@@ -1,34 +1,3 @@
 <div id="map">
   <div id="loading-js"><img src="http://i1304.photobucket.com/albums/s535/ink-our-nation/LISTING%20PAGE%20GRAPHICS/BIKE%20HARES/Active-Bike.gif"></div>
 </div>
-
-<script>
-  $(document).ready(function() {
-     function error(err) {
-      console.warn('ERROR(' + err.code + '): ' + err.message);
-      $('#loading-js').show();
-    };
-
-    navigator.geolocation.getCurrentPosition(success, error);
-
-    function success(pos) {
-      var crd = pos.coords;
-      console.log(crd.latitude);
-      console.log(crd.longitude);
-      $('#loading-js').hide();
-      var map = L.map('map').setView([crd.latitude, crd.longitude], 13);
-      L.tileLayer("http://{s}.tiles.mapbox.com/v3/clickclickonsal.k80nf736/{z}/{x}/{y}.png", {
-        attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © Mapbox',
-        maxZoom: 18
-      }).addTo(map);
-      <% LockUp.all.each do |data| %>
-        var lat = <%= data.lat %>
-        var lon = <%= data.lon %>
-        var name = '<%= data.name %>'
-        var description = '<%= data.description %>'
-        var marker = L.marker([lat, lon]).addTo(map);
-        marker.bindPopup( name + "<br />" + description );
-      <% end %>
-    };
-  });
-</script>

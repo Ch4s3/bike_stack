@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :lock_ups
   post 'lock_ups/find'
+  post 'lock_ups/vote'
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :spots
     post 'spots/find'
+    post 'spots/vote'
   end
 end
