@@ -1,2 +1,4 @@
-%h1 LockUp#show
-%p Find me in app/views/lock_up/show.html.haml
+%h1=@lockup.name
+
+-if @lockup.photo.present?
+  =image_tag @lockup.photo.url
