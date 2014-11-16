@@ -13,7 +13,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'devise'
-gem 'devise_invitable'
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
@@ -21,7 +20,8 @@ gem 'puma'
 gem 'pundit'
 gem 'simple_form'
 gem 'upmin-admin'
-gem 'geocoder'
+gem "paperclip", "~> 4.2"
+gem 'aws-sdk'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
